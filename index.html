@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2f9ea0" />
+  <title>الأداء الوظيفي - وزارة التعليم</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --main:#2f9ea0;
+      --accent:#1f7f86;
+      --dark:#143a4a;
+      --ink:#12313f;
+      --muted:#5f7683;
+
+      --card:#ffffff;
+      --card2:#f3f7f8;
+      --stroke:rgba(0,0,0,0.08);
+      --glass:rgba(255,255,255,0.10);
+      --shadow:0 10px 25px rgba(0,0,0,0.10);
+      --radius:14px;
+
+      --bg:none;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      font-family:"Tajawal",sans-serif;
+      margin:0;
+      padding:0;
+      color:#fff;
+      background:
+        linear-gradient(rgba(9,20,26,.30), rgba(9,20,26,.30)),
+        url('background.jpg') no-repeat center/cover;
+    }
+
+    header{
+      background: var(--main);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+    }
+    header nav{
+      width:92%;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    header nav img{ height:45px; margin-left:12px; }
+    .logo{ color:#fff; font-size:18px; font-weight:600; }
+
+    header nav ul{
+      list-style:none;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:0;
+      padding:0;
+    }
+    header nav ul li a{
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+      padding:7px 12px;
+      border-radius:10px;
+      transition:.2s;
+      background: rgba(255,255,255,0.06);
+    }
+    header nav ul li a:hover{
+      background: rgba(255,255,255,0.16);
+      color:#fff;
+    }
+
+    .page-wrap{
+      width:92%;
+      max-width:1200px;
+      margin: 18px auto 0;
+    }
+
+    .moe-slider{
+      width:100%;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+
+    .moe-slider .slides{
+      display:flex;
+      direction:ltr;
+      transition: transform .65s ease;
+      will-change: transform;
+    }
+    .moe-slider .slide{ flex:0 0 100%; }
+
+    .moe-banner{
+      height:220px;
+      position:relative;
+      overflow:hidden;
+    }
+    .moe-banner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--bg) center/cover no-repeat;
+      transform: scale(1.02);
+    }
+    .moe-banner::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(20,58,74,0.52);
+    }
+
+    .moe-banner-content{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1.1fr;
+      gap:16px;
+      padding: 22px 24px;
+      align-items:center;
+      color:#fff;
+    }
+
+    .moe-feature{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:0;
+    }
+    .moe-feature .icon{
+      width:32px;
+      height:32px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background: rgba(47,158,160,0.16);
+      border:1px solid rgba(255,255,255,0.18);
+      font-size:18px;
+    }
+    .moe-feature .title{
+      font-weight:700;
+      font-size:14px;
+      line-height:1.65;
+      color: rgba(255,255,255,0.92);
+    }
+    .moe-feature .line{
+      width:96px;
+      height:2px;
+      border-radius:2px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .moe-right{
+      text-align:right;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:flex-end;
+    }
+    .moe-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:8px;
+      background: rgba(47,158,160,0.22);
+      border:1px solid rgba(47,158,160,0.45);
+      font-weight:700;
+      font-size:14px;
+    }
+    .moe-right .headline{
+      font-size:21px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .moe-slider .prev,
+    .moe-slider .next{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border: 1px solid rgba(0,0,0,0.06);
+      cursor:pointer;
+      background: rgba(255,255,255,0.90);
+      color: var(--dark);
+      font-size:22px;
+      z-index:50;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+      transition: .2s;
+    }
+    .moe-slider .prev:hover,
+    .moe-slider .next:hover{
+      background: rgba(47,158,160,0.12);
+      color: var(--accent);
+    }
+    html[dir="rtl"] .moe-slider .prev{ right:14px; left:auto; }
+    html[dir="rtl"] .moe-slider .next{ left:14px; right:auto; }
+
+    .moe-slider .dots{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 0 12px;
+      background: var(--card);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .moe-slider .dot{
+      width:8px; height:8px;
+      border-radius:50%;
+      background: rgba(20,58,74,0.22);
+      cursor:pointer;
+      transition:.25s;
+    }
+    .moe-slider .dot.active{ background: var(--accent); }
+
+    .main-title{
+      text-align:center;
+      margin: 26px 0 16px;
+      font-size:30px;
+      font-weight:700;
+      color: #d5f4f4;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    }
+
+    .countdown-section{
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--stroke);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .countdown-title{
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .countdown-subtitle{
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .countdown-timer{
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .time-box{
+      background: linear-gradient(135deg, var(--main), var(--accent));
+      color: #fff;
+      padding: 18px 24px;
+      border-radius: 12px;
+      min-width: 90px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .time-value{
+      font-size: 32px;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .time-label{
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .video-section{
+      width:100%;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .video-row{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      direction:ltr;
+      align-items:center;
+    }
+    .video-thumb{
+      position:relative;
+      height:190px;
+      background:#173a4b;
+      border-radius:12px;
+      margin:22px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .thumb-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:none;
+      background:#0c2f42;
+    }
+    .play-btn{
+      position:absolute;
+      z-index:3;
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      border:none;
+      cursor:pointer;
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      transition: 0.2s;
+    }
+    .play-btn:hover{ transform: scale(1.05); background: rgba(47,158,160,0.18); }
+    .play-btn::before{
+      content:"";
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-40%,-50%);
+      width:0;height:0;
+      border-top:10px solid transparent;
+      border-bottom:10px solid transparent;
+      border-left:16px solid rgba(255,255,255,0.90);
+    }
+    .video-thumb.is-playing .play-btn{ display:none; }
+    .video-thumb.is-playing .thumb-video{ display:block; }
+
+    .video-info{
+      direction:rtl;
+      padding: 22px 22px 22px 10px;
+      text-align:right;
+      color: var(--ink);
+    }
+    .video-info h2{
+      margin:0 0 10px;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .video-info p{
+      margin:0;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .section-container{
+      width:100%;
+      margin:28px auto 0;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+    .section{
+      background: rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:15px;
+      padding:20px;
+      text-align:center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+      transition:0.2s;
+    }
+    .section:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+    }
+    .section.small-card{
+      height:200px;
+      padding:0;
+      position:relative;
+      overflow:hidden;
+    }
+    .section.small-card .section-bg{
+      width:100%;
+      height:100%;
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+    }
+    .section.small-card h3{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      font-size:18px;
+      color:#fff;
+      background: rgba(20,58,74,0.52);
+      padding:8px 12px;
+      border-radius:12px;
+      width: calc(100% - 24px);
+      max-width: 420px;
+    }
+    .section.small-card a{
+      position:absolute;
+      bottom:12px;
+      left:50%;
+      transform:translateX(-50%);
+      text-decoration:none;
+    }
+    .section.small-card button{
+      font-size:13px;
+      padding:8px 14px;
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      background: rgba(255,255,255,0.90);
+      color: var(--dark);
+      font-weight:700;
+    }
+
+    .new-wrap{ width:100%; margin:40px auto 0; }
+
+    .brand{
+      background: rgba(47,158,160,0.94);
+      padding:18px 20px;
+      color:white;
+      font-size:22px;
+      text-align:center;
+      border-radius:50px;
+      margin-bottom:18px;
+      font-weight:700;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+    .panel{
+      background: rgba(255,255,255,0.92);
+      padding:26px;
+      border-radius:20px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+    }
+    .timeline{ position:relative; margin:22px 0; padding-left:18px; }
+    .timeline-event{
+      position:relative;
+      margin-bottom: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid rgba(47,158,160,0.85);
+      transition:.2s;
+    }
+    .timeline-event:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+    .timeline-event h3{
+      font-size:18px;
+      margin:0 0 6px;
+      color: var(--dark);
+    }
+    .timeline-event p{
+      font-size:15px;
+      margin:0;
+      color: var(--muted);
+      font-weight:600;
+    }
+
+    .bottom{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-card{
+      flex:1 1 200px;
+      padding:12px;
+      font-size:15px;
+      text-align:center;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius:15px;
+      font-weight:700;
+      cursor:pointer;
+      color: var(--dark);
+      transition:.2s;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn-card:hover{
+      background: rgba(47,158,160,0.14);
+      transform: translateY(-2px);
+    }
+
+    .faq-header{
+      width:100%;
+      margin:45px auto 18px;
+      color:#d5f4f4;
+      padding:20px 22px;
+      border-radius:50px;
+      font-size:26px;
+      font-weight:700;
+      text-align:center;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(3px);
+    }
+    .faq-item{
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(0,0,0,0.06);
+      color: var(--ink);
+    }
+    .faq-item:hover{ transform: translateY(-2px); }
+    .faq-question{
+      padding: 14px 18px;
+      font-weight: 700;
+      display:flex;
+      align-items:center;
+      font-size: 15px;
+      background: linear-gradient(90deg, rgba(47,158,160,0.10), rgba(20,58,74,0.06));
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .faq-question .arrow{
+      display:inline-block;
+      margin-right:12px;
+      transition: transform 0.25s ease;
+      color: var(--accent);
+    }
+    .faq-item.open .arrow{ transform: rotate(90deg); }
+    .faq-answer{
+      padding: 0 18px;
+      max-height:0;
+      overflow:hidden;
+      transition: all 0.35s ease;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      background: rgba(0,0,0,0.02);
+    }
+    .faq-answer p{ margin:12px 0 14px; }
+
+    /* =========================
+      Chatbot (محسن)
+    ========================= */
+    #chatbot{
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 340px;
+      background: rgba(9,16,20,0.88);
+      border-radius: 15px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+      display: none;
+      flex-direction: column;
+      z-index: 9999;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    #chatbot header{
+      background: var(--main);
+      padding: 12px;
+      font-weight: 800;
+      text-align:center;
+      color:#fff;
+      position:static;
+      box-shadow:none;
+    }
+    #chatbot .messages{
+      padding: 10px;
+      height: 280px;
+      overflow-y:auto;
+      font-size:14px;
+    }
+
+    .msg{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      margin-bottom:10px;
+    }
+    .msg .bubble{
+      padding:10px 10px;
+      border-radius:12px;
+      line-height:1.65;
+      max-width: 92%;
+      word-break: break-word;
+    }
+    .msg.bot .bubble{
+      background: rgba(47,158,160,0.14);
+      border: 1px solid rgba(47,158,160,0.26);
+      color:#d7ffff;
+      align-self:flex-start;
+    }
+    .msg.user .bubble{
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      color:#fff;
+      align-self:flex-end;
+      text-align:right;
+    }
+    .msg .meta{
+      font-size:11px;
+      color: rgba(255,255,255,0.65);
+    }
+    .msg.user .meta{ text-align:right; }
+
+    .chat-actions{
+      padding:10px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+    }
+    .chip{
+      font-family:"Tajawal",sans-serif;
+      border:none;
+      cursor:pointer;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.10);
+      color:#fff;
+      font-weight:700;
+      font-size:12px;
+      transition:.15s;
+    }
+    .chip:hover{ background: rgba(47,158,160,0.18); }
+
+    #chatbot .input-row{
+      display:flex;
+      gap:8px;
+      padding:10px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    #chatbot input{
+      flex:1;
+      border:none;
+      padding:10px 12px;
+      outline:none;
+      border-radius:12px;
+      font-family:"Tajawal",sans-serif;
+      background: rgba(255,255,255,0.12);
+      color:#fff;
+    }
+    #chatbot input::placeholder{ color: rgba(255,255,255,0.70); }
+    #sendBtn{
+      border:none;
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius:12px;
+      background: rgba(47,158,160,0.92);
+      color:#fff;
+      font-weight:800;
+      font-family:"Tajawal",sans-serif;
+    }
+    #sendBtn:hover{ filter: brightness(1.05); }
+
+    #chatbot-btn{
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(47,158,160,0.92);
+      color:#fff;
+      border:none;
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-weight: 800;
+      cursor:pointer;
+      z-index: 9999;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    footer{
+      background: rgba(20,58,74,0.95);
+      padding:28px 0;
+      margin-top:40px;
+      text-align:center;
+      color: rgba(255,255,255,0.92);
+    }
+
+    @media (max-width: 992px){
+      .moe-banner-content{ grid-template-columns: 1fr 1fr; }
+      .moe-right{ order:-1; grid-column:1/-1; align-items:flex-end; }
+    }
+    @media (max-width: 768px){
+      header nav{ flex-direction:column; gap:10px; }
+      header nav ul{ justify-content:center; }
+      .video-row{ grid-template-columns:1fr; direction:rtl; }
+      .video-thumb{ margin:18px; height:200px; }
+      .video-info{ padding: 0 18px 18px; }
+      #chatbot{ width: 92vw; left: 4vw; }
+    }
+    @media (max-width: 560px){
+      .moe-banner{ height:260px; }
+      .moe-banner-content{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <img src="الشعار بدون خلفية.png" alt="شعار وزارة التعليم">
+    <div class="logo"> </div>
+    <ul>
+      <li><a href="index.html"></a></li>
+      <li><a href="#timeline-admin"> </a></li>
+      <li><a href="#timeline-edu">  </a></li>
+      <li><a href="#timeline-admin"> </a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-wrap">
+
+  <!-- Slider -->
+  <div class="moe-slider" id="moeSlider" role="region" aria-label="شريط الصور">
+    <div class="slides">
+
+      <div class="slide">
+        <div class="moe-banner" style="--bg: url('slide1.jpg');">
+          <div class="moe-banner-content">
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">تحفيز الموظف على تحسين أدائه عبر التغذية الراجعة المستمرة</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">التأكد من توافق الأداء مع متطلبات المؤسسة والتوجهات الاستراتيجية</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">تحقيق التواصل المستمر بين الموظف والمدير لضمان الفهم المشترك للأهداف</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-right">
+              <span class="moe-badge">أهمية</span>
+              <div class="headline">المراجعة النصف سنوية</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="moe-banner" style="--bg: url('slide2.jpg');">
+          <div class="moe-banner-content">
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">توضيح التوقعات وتحديث الأهداف حسب الأولويات</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">متابعة مؤشرات الأداء وتحديد نقاط التحسين</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">اتفاق خطة عمل مشتركة للفترة القادمة</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-right">
+              <span class="moe-badge">أهمية</span>
+              <div class="headline">مرحلة التخطيط</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="moe-banner" style="--bg: url('slide3.jpg');">
+          <div class="moe-banner-content">
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">قياس النتائج وفق معايير التقييم المعتمدة</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">مراجعة الشواهد والتحقق من تحقيق المستهدفات</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-feature">
+              <div class="icon"></div>
+              <div class="title">تحديد فرص التطوير ودعم التميز</div>
+              <div class="line"></div>
+            </div>
+            <div class="moe-right">
+              <span class="moe-badge">أهمية</span>
+              <div class="headline">تقييم الأداء</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="prev" type="button" aria-label="السابق">&#10094;</button>
+    <button class="next" type="button" aria-label="التالي">&#10095;</button>
+
+    <div class="dots" aria-label="مؤشرات الشرائح">
+      <span class="dot" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+  </div>
+
+  <div class="main-title">إدارة الأداء الوظيفي</div>
+
+  <!-- Video -->
+  <section class="video-section" aria-label="قسم الفيديو">
+    <div class="video-row">
+      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="تشغيل الفيديو">
+        <button class="play-btn" type="button" aria-label="تشغيل"></button>
+        <video id="moeVideo" class="thumb-video" controls playsinline preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-info">
+        <h2>فيديو</h2>
+        <p>رحلة التحول نحو إدارة الأداء الوظيفي</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Cards -->
+  <div class="section-container">
+    <div class="section small-card">
+      <div class="section-bg" style="background-image:url('image1.jpg');"></div>
+      <h3> الأداء الوظيفي لشاغلي الوظائف الإدارية</h3>
+      <a href="#timeline-admin"><button type="button">اطلع على المزيد</button></a>
+    </div>
+    <div class="section small-card">
+      <div class="section-bg" style="background-image:url('image2.jpg');"></div>
+      <h3> الأداء الوظيفي لشاغلي الوظائف التعليمية</h3>
+      <a href="#timeline-edu"><button type="button">اطلع على المزيد</button></a>
+    </div>
+  </div>
+
+  <!-- Timeline Admin -->
+  <div class="new-wrap" id="timeline-admin">
+    <div class="brand"> الأداء الوظيفي لشاغلي الوظائف الإدارية</div>
+    <div class="panel">
+      <!-- Countdown for Administrative Staff -->
+      <div class="countdown-section" style="margin-bottom: 24px;">
+        <div class="countdown-title">المرحلة الحالية</div>
+        <div class="countdown-subtitle">إعداد واعتماد ميثاق الأداء الوظيفي</div>
+        <div class="countdown-timer" id="countdown-admin">
+          <div class="time-box">
+            <span class="time-value" id="days-admin">0</span>
+            <span class="time-label">يوم</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="hours-admin">0</span>
+            <span class="time-label">ساعة</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="minutes-admin">0</span>
+            <span class="time-label">دقيقة</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="seconds-admin">0</span>
+            <span class="time-label">ثانية</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-event"><h3>إعداد واعتماد ميثاق الأداء الوظيفي</h3><p>📅 08/02/2026 - 26/03/2026</p></div>
+        <div class="timeline-event"><h3>المراجعة نصف السنوية</h3><p>📅 01/06/2026 - 30/07/2026</p></div>
+        <div class="timeline-event"><h3>تقييم الأداء الوظيفي</h3><p>📅 01/11/2026 - 17/12/2026</p></div>
+      </div>
+      <div class="bottom">
+        <div class="btn-card">صندوق النماذج</div>
+        <a href="user-journey.html" class="btn-card">رحلة الأداء الوظيفي</a>
+        <div class="btn-card">الأدلة والإرشادات</div>
+        <div class="btn-card">المحتوى البصري</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Edu -->
+  <div class="new-wrap" id="timeline-edu">
+    <div class="brand">الأداء الوظيفي لشاغلي الوظائف التعليمية</div>
+    <div class="panel">
+      <!-- Countdown for Educational Staff -->
+      <div class="countdown-section" style="margin-bottom: 24px;">
+        <div class="countdown-title">المرحلة الحالية</div>
+        <div class="countdown-subtitle">مرحلة المراجعة النصف سنوية</div>
+        <div class="countdown-timer" id="countdown-edu">
+          <div class="time-box">
+            <span class="time-value" id="days-edu">0</span>
+            <span class="time-label">يوم</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="hours-edu">0</span>
+            <span class="time-label">ساعة</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="minutes-edu">0</span>
+            <span class="time-label">دقيقة</span>
+          </div>
+          <div class="time-box">
+            <span class="time-value" id="seconds-edu">0</span>
+            <span class="time-label">ثانية</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-event">
+          <h3>مرحلة التخطيط للأداء الوظيفي</h3>
+          <p>📅 من 17-03-1447هـ الموافق 09-09-2025م<br>إلى 26-03-1447هـ الموافق 18-09-2025م</p>
+        </div>
+        <div class="timeline-event">
+          <h3>مرحلة المراجعة النصف سنوية</h3>
+          <p>📅 من 29-07-1447هـ الموافق 18-01-2026م<br>إلى 24-08-1447هـ الموافق 19-02-2026م</p>
+        </div>
+        <div class="timeline-event">
+          <h3>مرحلة تقييم الأداء الوظيفي (التقييم النهائي)</h3>
+          <p>📅 من 02-11-1447هـ الموافق 19-04-2026م<br>إلى 29-12-1447هـ الموافق 15-06-2026م</p>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="btn-card">صندوق النماذج</div>
+        <a href="user-journey.html" class="btn-card">رحلة الأداء الوظيفي</a>
+        <div class="btn-card">الأدلة والإرشادات</div>
+        <div class="btn-card">المحتوى البصري</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- Chatbot -->
+<button id="chatbot-btn">تحدث مع المساعد</button>
+
+<div id="chatbot" aria-label="مساعد الأداء الوظيفي">
+  <header>مساعد الأداء الوظيفي</header>
+
+  <div class="messages" id="chatMessages"></div>
+
+  <div class="chat-actions" id="chatActions">
+    <button class="chip" data-q="ما هو ميثاق الأداء؟">ميثاق الأداء</button>
+    <button class="chip" data-q="كم عدد الأهداف؟">عدد الأهداف</button>
+    <button class="chip" data-q="ما هي المراجعة النصف سنوية؟">المراجعة</button>
+    <button class="chip" data-q="كيف أتظلم؟">التظلم</button>
+    <button class="chip" data-q="ما هو سلم التقدير؟">سلم التقدير</button>
+  </div>
+
+  <div class="input-row">
+    <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا..." autocomplete="off">
+    <button id="sendBtn" type="button">إرسال</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 وزارة التعليم - جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+/* =========================
+   Countdown Timer for Educational Staff
+========================= */
+(function(){
+  const targetDate = new Date('2026-02-19T23:59:59').getTime();
+  
+  function updateCountdownEdu(){
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    if(distance < 0){
+      document.getElementById('countdown-edu').innerHTML = '<div class="time-box"><span class="time-value">انتهت المرحلة</span></div>';
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days-edu').textContent = days;
+    document.getElementById('hours-edu').textContent = hours;
+    document.getElementById('minutes-edu').textContent = minutes;
+    document.getElementById('seconds-edu').textContent = seconds;
+  }
+  
+  updateCountdownEdu();
+  setInterval(updateCountdownEdu, 1000);
+})();
+
+/* =========================
+   Countdown Timer for Administrative Staff
+========================= */
+(function(){
+  const targetDate = new Date('2026-03-26T23:59:59').getTime();
+  
+  function updateCountdownAdmin(){
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    if(distance < 0){
+      document.getElementById('countdown-admin').innerHTML = '<div class="time-box"><span class="time-value">انتهت المرحلة</span></div>';
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days-admin').textContent = days;
+    document.getElementById('hours-admin').textContent = hours;
+    document.getElementById('minutes-admin').textContent = minutes;
+    document.getElementById('seconds-admin').textContent = seconds;
+  }
+  
+  updateCountdownAdmin();
+  setInterval(updateCountdownAdmin, 1000);
+})();
+
+/* =========================
+   Slider
+========================= */
+(function(){
+  const slider = document.getElementById("moeSlider");
+  if(!slider) return;
+
+  const track  = slider.querySelector(".slides");
+  const slides = slider.querySelectorAll(".slide");
+  const dots   = slider.querySelectorAll(".dot");
+  const prev   = slider.querySelector(".prev");
+  const next   = slider.querySelector(".next");
+
+  let index = 0;
+  const total = slides.length;
+
+  function update(){
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    if(dots[index]) dots[index].classList.add("active");
+  }
+  function go(n){
+    index = (n + total) % total;
+    update();
+  }
+
+  prev.addEventListener("click", ()=> go(index - 1));
+  next.addEventListener("click", ()=> go(index + 1));
+
+  dots.forEach(dot=>{
+    dot.addEventListener("click", ()=> go(parseInt(dot.dataset.index,10) || 0));
+  });
+
+  let timer = setInterval(()=> go(index + 1), 5500);
+  slider.addEventListener("mouseenter", ()=> clearInterval(timer));
+  slider.addEventListener("mouseleave", ()=> timer = setInterval(()=> go(index + 1), 5500));
+
+  update();
+})();
+
+/* =========================
+   Video
+========================= */
+(function(){
+  const thumb = document.getElementById("videoThumb");
+  const video = document.getElementById("moeVideo");
+  if(!thumb || !video) return;
+
+  function playInside(){
+    thumb.classList.add("is-playing");
+    video.play().catch(()=>{});
+  }
+
+  thumb.addEventListener("click", playInside);
+  thumb.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      playInside();
+    }
+  });
+
+  video.addEventListener("ended", ()=>{
+    thumb.classList.remove("is-playing");
+    video.currentTime = 0;
+  });
+})();
+
+/* =========================
+   FAQ toggle
+========================= */
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.querySelector(".faq-question").addEventListener("click", ()=>{
+    item.classList.toggle("open");
+    const answer = item.querySelector(".faq-answer");
+    if(item.classList.contains("open")) answer.style.maxHeight = answer.scrollHeight + "px";
+    else answer.style.maxHeight = null;
+  });
+});
+
+/* =========================
+   Chatbot Knowledge Base (إداري + تعليمي) + مطابقة ذكية
+========================= */
+
+/* نوع المستخدم داخل الشات */
+let userTrack = "عام"; // "إداري" | "تعليمي" | "عام"
+
+const FAQ_KB = [
+  // عام
+  { track:"عام", keys:["تسجيل الدخول","اسجل الدخول","الدخول","login"], answer:"يمكنك تسجيل الدخول باستخدام حساب وزارة التعليم الخاص بك، ومن ثم الوصول إلى لوحة الأداء الوظيفي." },
+  { track:"عام", keys:["رفع الملفات","ارفع ملف","تحميل ملف","المرفقات","الشواهد"], answer:"يمكن رفع الملفات من خلال قسم «صندوق النماذج»، مع الالتزام بصيغ الملفات المسموح بها." },
+
+  // إداري
+  { track:"إداري", keys:["ميثاق","ميثاق الأداء","ميثاق الأداء الوظيفي","ما هو ميثاق"], answer:"ميثاق الأداء الوظيفي يطبق على الموظفين الحكوميين (شاغلي الوظائف الإدارية) من المرتبة الأولى إلى الخامسة عشر، والمستخدمين، وبند الأجور، والمتعاقدين." },
+  { track:"إداري", keys:["السنة","السنة الميلادية","التقويم","ينتهي"], answer:"يتم تطبيق إدارة الأداء الوظيفي خلال السنة الخاضعة لتقويم الأداء، ويكون انتهاؤها مع نهاية السنة الميلادية." },
+  { track:"إداري", keys:["عدد الأهداف","كم هدف","4","6","اربعة","ستة"], answer:"يتفق الموظف ومديره المباشر على عدد الأهداف بحيث يتراوح بين 4 إلى 6 أهداف." },
+  { track:"إداري", keys:["الأهداف الذكية","هدف ذكي","SMART"], answer:"الأهداف الذكية تكون: محددة، قابلة للقياس، قابلة للتطبيق، واقعية، ومحددة بإطار زمني." },
+  { track:"إداري", keys:["الوزن النسبي","وزن الهدف","تحديد الوزن"], answer:"يتم تحديد الوزن النسبي لكل هدف حسب أهمية الهدف مقارنة بالأهداف الأخرى." },
+  { track:"إداري", keys:["الناتج المستهدف","مستهدف","ضوابط المستهدف"], answer:"الناتج المستهدف هو تحديد كمي للأداء المتوقع خلال دورة الأداء، ويجب أن يكون قابلًا للقياس والتحقيق ويشكل نوعًا من التحدي." },
+  { track:"إداري", keys:["المراجعة النصف سنوية","نصف سنوية","المراجعة"], answer:"المراجعة النصف سنوية هي ممارسة دورية بين المدير المباشر والموظف لمراجعة وتقييم الأهداف والجدارات، لمعرفة مستوى الأداء وتصحيح المسار قبل انتهاء فترة التقييم." },
+  { track:"إداري", keys:["تحديث الأهداف","تعديل الأهداف","هل يمكن تعديل"], answer:"يمكن تحديث الأهداف بعد التنسيق مع المدير المباشر وذلك بعد انتهاء النصف الأول من دورة الأداء خلال فترة المراجعة النصف سنوية." },
+  { track:"إداري", keys:["الاطلاع على الميثاق","اشوف الميثاق","نظام فارس","الخدمة الذاتية"], answer:"يمكن الاطلاع على ميثاق الأداء الوظيفي في نظام فارس عبر: الخدمة الذاتية للموظف > الأداء الوظيفي > إعداد ميثاق الأداء الوظيفي > الاطلاع على نموذج الميثاق." },
+  { track:"إداري", keys:["احتساب","كيف يتم احتساب","حساب التقييم","تقييم الأداء"], answer:"يُحسب التقييم عبر: إجمالي التقدير الموزون للأهداف + إجمالي التقدير الموزون للجدارات، ثم ضرب كلٍ منهما في الأهمية النسبية (الأهداف 50% والجدارات 50%) ثم جمعهما." },
+  { track:"إداري", keys:["من يقيم","المدير المباشر","مين يقيم","صاحب الصلاحية"], answer:"المدير المباشر هو المسؤول عن تقييم الموظف الذي يعمل تحت إدارته وفق نموذج ميثاق الأداء الوظيفي." },
+  { track:"إداري", keys:["سلم التقدير","درجات التقدير","مثالي","تخطى التوقعات","وافق التوقعات","يحتاج","غير مرضي"], answer:"درجات التقدير العام: 5 مثالي، 4 تخطى التوقعات، 3 وافق التوقعات، 2 يحتاج إلى تطوير، 1 غير مرضي." },
+  { track:"إداري", keys:["التظلم","اعتراض","أعترض","كيف أتظلم"], answer:"يمكن التظلم على نتيجة تقييم الأداء الوظيفي عبر نظام فارس، وهي القناة الرسمية لاستقبال التظلمات." },
+
+  // تعليمي
+  { track:"تعليمي", keys:["دورة الأداء","مراحل دورة الأداء","مرحلة التخطيط","مرحلة التقييم","مراحل"], answer:"دورة أداء شاغلي الوظائف التعليمية تمر بثلاث مراحل: التخطيط، المراجعة النصف سنوية، ثم التقييم (مع مراعاة الإجازات الرسمية)." },
+  { track:"تعليمي", keys:["قنوات التواصل","الإعلان عن موعد","كيف نعرف الموعد","متى يبدأ"], answer:"يتم الإعلان عن مواعيد كل مرحلة عبر الموقع الرسمي لوزارة التعليم، ومنصاتها الرسمية، بالإضافة لقنوات المدرسة والبريد الإلكتروني الوزاري." },
+  { track:"تعليمي", keys:["نماذج التقييم","وش نماذج","ما هي النماذج"], answer:"توجد نماذج تقييم متعددة بحسب الفئة (مثل: معلم التعليم العام، معلم نشاط، معلمة رياض أطفال، وكيل/مدير مدرسة، محضر مختبر، مشرف تربوي… إلخ)." },
+  { track:"تعليمي", keys:["وظيفة إشرافية","غير إشرافية","الوظائف الإشرافية"], answer:"الوظيفة الإشرافية تجمع بين المسؤوليات التشغيلية والقيادية/الإشرافية، بينما غير الإشرافية تركز على المهام التشغيلية دون مسؤولية إشراف." },
+  { track:"تعليمي", keys:["عدد الأهداف","ميثاق الأداء","التشكيلات الإشرافية","أربعة","ستة","4","6"], answer:"في التشكيلات الإشرافية: عدد الأهداف في الميثاق يتراوح بين 4 إلى 6 أهداف حسب الاتفاق بين المشرف التربوي والمدير المباشر." },
+  { track:"تعليمي", keys:["سلم التقدير","مستويات القياس","مستويات الأداء","بحاجة لتطور"], answer:"سلم التقدير لشاغلي الوظائف التعليمية: 5 مثالي، 4 تخطى التوقعات، 3 وافق التوقعات، 2 بحاجة لتطور، 1 غير مرضي." }
+];
+
+function normalizeArabic(s){
+  return (s || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ه")
+    .replace(/ى/g, "ي")
+    .replace(/ؤ/g, "و")
+    .replace(/ئ/g, "ي")
+    .replace(/ـ/g, "")
+    .replace(/[^\u0600-\u06FF0-9a-z\s]/g, " ")
+    .replace(/\s+/g, " ");
+}
+
+function scoreMatch(qNorm, keys){
+  // نقاط بسيطة: كل كلمة/عبارة مطابقة تزيد النقاط
+  let score = 0;
+  for(const k of keys){
+    const kn = normalizeArabic(k);
+    if(!kn) continue;
+    if(qNorm.includes(kn)) score += Math.max(2, Math.min(6, kn.length / 3));
+  }
+  return score;
+}
+
+function getFAQAnswer(userText){
+  const q = normalizeArabic(userText);
+  if(!q) return null;
+
+  // ابحث في نفس المسار + العام
+  const candidates = FAQ_KB.filter(x => x.track === userTrack || x.track === "عام");
+
+  let best = null;
+  let bestScore = 0;
+
+  for(const item of candidates){
+    const s = scoreMatch(q, item.keys);
+    if(s > bestScore){
+      bestScore = s;
+      best = item;
+    }
+  }
+
+  // حد أدنى بسيط عشان لا يجاوب غلط
+  if(best && bestScore >= 3) return best.answer;
+  return null;
+}
+
+/* =========================
+   Chatbot UI + إرسال
+========================= */
+const chatbotBtn = document.getElementById("chatbot-btn");
+const chatbot = document.getElementById("chatbot");
+const input = document.getElementById("chatInput");
+const messages = document.getElementById("chatMessages");
+const sendBtn = document.getElementById("sendBtn");
+const actions = document.getElementById("chatActions");
+
+function timeNow(){
+  const d = new Date();
+  return d.toLocaleTimeString("ar-SA", { hour:"2-digit", minute:"2-digit" });
+}
+
+function addMsg(type, text){
+  const wrap = document.createElement("div");
+  wrap.className = `msg ${type}`;
+
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+  bubble.textContent = text;
+
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.textContent = timeNow();
+
+  wrap.appendChild(bubble);
+  wrap.appendChild(meta);
+  messages.appendChild(wrap);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function showWelcome(){
+  addMsg("bot", "مرحباً 👋 أنا مساعد الأداء الوظيفي. اختر مسارك أولاً عشان أعطيك إجابات أدق: إداري أو تعليمي.");
+
+  // أزرار اختيار المسار
+  const chooser = document.createElement("div");
+  chooser.className = "msg bot";
+
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+
+  const btnAdmin = document.createElement("button");
+  btnAdmin.className = "chip";
+  btnAdmin.textContent = "إداري";
+  btnAdmin.addEventListener("click", ()=>{
+    userTrack = "إداري";
+    addMsg("bot", "تم اختيار المسار: إداري ✅");
+    addMsg("bot", "اسألني الآن مثل: (ميثاق الأداء / عدد الأهداف / المراجعة النصف سنوية / التظلم / سلم التقدير).");
+  });
+
+  const btnEdu = document.createElement("button");
+  btnEdu.className = "chip";
+  btnEdu.textContent = "تعليمي";
+  btnEdu.addEventListener("click", ()=>{
+    userTrack = "تعليمي";
+    addMsg("bot", "تم اختيار المسار: تعليمي ✅");
+    addMsg("bot", "اسألني الآن مثل: (مراحل دورة الأداء / نماذج التقييم / سلم التقدير / قنوات التواصل).");
+  });
+
+  const btnAny = document.createElement("button");
+  btnAny.className = "chip";
+  btnAny.textContent = "عام";
+  btnAny.addEventListener("click", ()=>{
+    userTrack = "عام";
+    addMsg("bot", "تمام — بنرد عليك إجابات عامة ✅");
+  });
+
+  bubble.appendChild(btnAdmin);
+  bubble.appendChild(btnEdu);
+  bubble.appendChild(btnAny);
+
+  chooser.appendChild(bubble);
+  messages.appendChild(chooser);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function handleSend(text){
+  const val = (text ?? input.value).trim();
+  if(!val) return;
+
+  addMsg("user", val);
+  input.value = "";
+
+  const answer = getFAQAnswer(val);
+  if(answer){
+    addMsg("bot", answer);
+    return;
+  }
+
+  addMsg("bot", "ما فهمت سؤالك تمامًا. جرّب كلمات مثل: (ميثاق الأداء / عدد الأهداف / المراجعة / التظلم / سلم التقدير / نماذج التقييم).");
+}
+
+/* فتح/إغلاق الشات */
+let initiated = false;
+chatbotBtn.addEventListener("click", ()=>{
+  const willOpen = chatbot.style.display !== "flex";
+  chatbot.style.display = willOpen ? "flex" : "none";
+
+  if(willOpen && !initiated){
+    initiated = true;
+    showWelcome();
+  }
+});
+
+sendBtn.addEventListener("click", ()=> handleSend());
+
+input.addEventListener("keypress", (e)=>{
+  if(e.key === "Enter") handleSend();
+});
+
+/* الأزرار السريعة */
+actions.querySelectorAll(".chip").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    handleSend(btn.dataset.q || btn.textContent);
+  });
+});
+</script>
+
+</body>
+</html>

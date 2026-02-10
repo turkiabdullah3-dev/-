@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#2f9ea0" />
+<title>رحلة الأداء الوظيفي</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --main:#2f9ea0;
+  --accent:#1f7f86;
+  --dark:#143a4a;
+  --ink:#12313f;
+  --muted:#5f7683;
+  --shadow:0 8px 20px rgba(0,0,0,0.10);
+  --radius:14px;
+  --maxw:960px;
+}
+
+*{box-sizing:border-box}
+html,body{min-height:100%}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Tajawal",sans-serif;
+  color:#fff;
+  background:
+    linear-gradient(rgba(9,20,26,.30), rgba(9,20,26,.30)),
+    url('background.jpg') no-repeat center center;
+  background-size:cover;
+}
+
+/* ===== Header ===== */
+header{
+  background:var(--main);
+  padding:8px 0;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+nav{
+  width:92%;
+  max-width:var(--maxw);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.brand img{height:32px}
+.brand span{font-size:14px;font-weight:700}
+
+.navTitle{
+  flex:1;
+  text-align:center;
+  font-size:15px;
+  font-weight:800;
+  opacity:.95;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:6px;
+  margin:0;
+  padding:0;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  padding:5px 9px;
+  border-radius:8px;
+  background:rgba(255,255,255,.08);
+}
+
+/* ===== Page ===== */
+.page{
+  width:92%;
+  max-width:var(--maxw);
+  margin:14px auto 32px;
+}
+
+.hero-title{
+  text-align:center;
+  font-size:22px;
+  margin:14px 0 6px;
+  font-weight:900;
+  color:#d5f4f4;
+}
+.hero-sub{
+  text-align:center;
+  font-size:13px;
+  color:rgba(255,255,255,.85);
+  margin-bottom:14px;
+}
+
+/* ===== Panel ===== */
+.panel{
+  background:rgba(255,255,255,.94);
+  color:var(--ink);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:8px;
+  margin-bottom:10px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.panel-title{
+  margin:0;
+  font-size:17px;
+  font-weight:900;
+  color:var(--dark);
+}
+.backLink{
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--dark);
+  padding:6px 10px;
+  border-radius:8px;
+  background:rgba(0,0,0,.05);
+}
+
+/* ===== Flow ===== */
+.flow{display:flex;flex-direction:column;gap:10px}
+
+.step{
+  display:flex;
+  gap:10px;
+  padding:12px;
+  background:#fff;
+  border-radius:var(--radius);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 4px 10px rgba(0,0,0,.06);
+}
+.icon{
+  min-width:50px;
+  min-height:50px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:rgba(47,158,160,.12);
+  color:var(--accent);
+  position:relative;
+  font-size:18px;
+}
+.tooltip{
+  position:absolute;
+  bottom:110%;
+  right:0;
+  background:#143a4a;
+  color:#fff;
+  font-size:12px;
+  padding:6px 8px;
+  border-radius:8px;
+  opacity:0;
+  transition:.2s;
+  white-space:nowrap;
+}
+.step:hover .tooltip{opacity:1}
+
+.step h3{
+  margin:0 0 3px;
+  font-size:15px;
+  color:var(--dark);
+}
+.step p{
+  margin:0;
+  font-size:12.5px;
+  color:var(--muted);
+}
+
+.arrow{
+  text-align:center;
+  color:var(--accent);
+  font-size:16px;
+}
+
+.note{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:700px){
+  .navTitle{display:none}
+  nav{justify-content:center}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="brand">
+      <img src="moe-logo.png" alt="شعار وزارة التعليم">
+      <span>وزارة التعليم</span>
+    </div>
+
+    <div class="navTitle">وزارة التعليم - الأداء الوظيفي</div>
+
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="journey.html">رحلة الأداء</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page">
+  <h1 class="hero-title">رحلة الأداء الوظيفي</h1>
+  <p class="hero-sub">مخطط مبسّط يوضح مراحل إدارة الأداء الوظيفي على مدار العام</p>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">المراحل الأساسية</h2>
+      <a class="backLink" href="index.html">العودة للرئيسية</a>
+    </div>
+
+    <div class="flow">
+
+      <div class="step">
+        <div class="icon">
+          <div class="tooltip">تحديد المهام والأهداف</div>
+        </div>
+        <div>
+          <h3>إعداد ميثاق الأداء</h3>
+          <p>تحديد المهام والنتائج لعام الأداء.</p>
+        </div>
+      </div>
+
+      <div class="arrow">⬇</div>
+
+      <div class="step">
+        <div class="icon">
+          <div class="tooltip">مراجعة منتصف العام</div>
+        </div>
+        <div>
+          <h3>محطة المراجعة</h3>
+          <p>متابعة التقدم وتحديث المستهدفات.</p>
+        </div>
+      </div>
+
+      <div class="arrow">⬇</div>
+
+      <div class="step">
+        <div class="icon">
+          <div class="tooltip">تقييم نهائي</div>
+        </div>
+        <div>
+          <h3>تقييم الأداء</h3>
+          <p>قياس النتائج وفق معايير التقييم.</p>
+        </div>
+      </div>
+
+      <div class="arrow">⬇</div>
+
+      <div class="step">
+        <div class="icon">
+          <div class="tooltip">تقديم تظلم</div>
+        </div>
+        <div>
+          <h3>تظلمات نتائج التقييم</h3>
+          <p>متابعة إجراءات التظلم حسب الضوابط.</p>
+        </div>
+      </div>
+
+      <p class="note">يمكن تعديل النصوص وفق دليل هوية وزارة التعليم.</p>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
