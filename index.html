@@ -403,8 +403,22 @@
       height:100%;
       background-size:cover;
       background-position:center;
-      transform:scale(1.02);
+      transform:scale(1.05);
+      filter: saturate(1.1) contrast(1.08) brightness(0.75);
     }
+    .section.small-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(7,24,32,0.55), rgba(7,24,32,0.75)),
+        radial-gradient(120% 120% at 50% 0%, rgba(47,158,160,0.20), rgba(20,58,74,0.55));
+      backdrop-filter: blur(1px);
+      pointer-events:none;
+    }
+    .section.small-card .section-bg,
+    .section.small-card h3,
+    .section.small-card a{ position:relative; z-index:1; }
     .section.small-card h3{
       position:absolute;
       top:50%;
@@ -943,13 +957,12 @@
           <p>📅 من 29-07-1447هـ الموافق 18-01-2026م<br>إلى 24-08-1447هـ الموافق 19-02-2026م</p>
         </div>
         <div class="timeline-event">
-          <h3>مرحلة تقييم الأداء الوظيفي (التقييم النهائي)</h3>
+          <h3>مرحلة تقييم الأداء الوظيفي </h3>
           <p>📅 من 02-11-1447هـ الموافق 19-04-2026م<br>إلى 29-12-1447هـ الموافق 15-06-2026م</p>
         </div>
       </div>
       <div class="bottom">
         <div class="btn-card">صندوق النماذج</div>
-        <a href="user-journey.html" class="btn-card">رحلة الأداء الوظيفي</a>
         <div class="btn-card">الأدلة والإرشادات</div>
         <div class="btn-card">المحتوى البصري</div>
         <a href="https://moe.futurex.sa/courses/course-v1:moe+moe_3+G_2025/about" target="_blank" class="btn-card">الحقيبة التدريبية</a>
@@ -982,7 +995,7 @@
 </div>
 
 <footer>
-  <p>© 2025 وزارة التعليم - جميع الحقوق محفوظة</p>
+  <p>© 2026 وزارة التعليم - جميع الحقوق محفوظة</p>
 </footer>
 
 <script>
